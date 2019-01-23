@@ -23,6 +23,7 @@ class Config
     const K8M_ADMIN=5;
 
     public static $log_options=[
+        'env'=>'prod',
         'map'=>[
             'error','warning','info','debug'
         ],
