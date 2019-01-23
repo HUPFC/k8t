@@ -1,6 +1,6 @@
 {
-    "name": "hupfc/k8uc",
-    "description": "kuai8 ucenter client",
+    "name": "hupfc/k8t",
+    "description": "kuai8 tools, ucenter client",
     "license": "MIT",
     "authors": [
         {
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "hupfc\\k8uc\\": "./"
+            "hupfc\\k8t\\": "./"
         }
     }
 }
