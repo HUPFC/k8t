@@ -6,7 +6,7 @@
  * Time: 9:48
  */
 
-namespace hupfc\k8uc\src;
+namespace hupfc\k8t\src;
 
 abstract class CurlAbstract
 {

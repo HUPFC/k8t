@@ -6,11 +6,11 @@
  * Time: 10:51
  */
 
-namespace hupfc\k8uc\src;
+namespace hupfc\k8t\src;
 
 /**
  * Class Config
- * @package hupfc\k8uc\src
+ * @package hupfc\k8t\src
  * 配置初始化，必须调用Config::setParams  Config::setDomain 其他函数可以不使用
  */
 class Config

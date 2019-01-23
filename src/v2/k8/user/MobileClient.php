@@ -6,12 +6,12 @@
  * Time: 11:35
  */
 
-namespace hupfc\k8uc\src\v2\k8\user;
+namespace hupfc\k8t\src\v2\k8\user;
 
 
 
-use hupfc\k8uc\src\Config;
-use hupfc\k8uc\src\CurlAbstract;
+use hupfc\k8t\src\Config;
+use hupfc\k8t\src\CurlAbstract;
 
 class MobileClient extends CurlAbstract
 {

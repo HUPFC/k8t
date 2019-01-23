@@ -6,7 +6,7 @@
  * Time: 9:50
  */
 
-namespace hupfc\k8uc\src;
+namespace hupfc\k8t\src;
 
 
 class Common

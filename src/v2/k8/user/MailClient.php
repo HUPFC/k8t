@@ -6,11 +6,11 @@
  * Time: 13:54
  */
 
-namespace hupfc\k8uc\src\v2\k8\user;
+namespace hupfc\k8t\src\v2\k8\user;
 
 
-use hupfc\k8uc\src\Config;
-use hupfc\k8uc\src\CurlAbstract;
+use hupfc\k8t\src\Config;
+use hupfc\k8t\src\CurlAbstract;
 
 class MailClient extends CurlAbstract
 {

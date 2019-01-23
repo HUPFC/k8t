@@ -6,11 +6,11 @@
  * Time: 15:23
  */
 
-namespace hupfc\k8uc\src;
+namespace hupfc\k8t\src;
 
 /**
  * Class OutCode
- * @package hupfc\k8uc\src
+ * @package hupfc\k8t\src
  * 错误码
  */
 class OutCode
