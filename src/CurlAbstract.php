@@ -18,7 +18,7 @@ abstract class CurlAbstract
     public function __construct()
     {
         require_once __DIR__.'/../lib/curl/curl.php';
-        $this->curl = new \Curl();
+        $this->curl = new \K8tCurl();
         $this->curl->options = [
             'CURLOPT_TIMEOUT'=>15,//15秒超时
             'CURLOPT_CONNECTTIMEOUT'=>5,//tcp链接等待时间

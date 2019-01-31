@@ -8,7 +8,7 @@
  * @package curl
  * @author Sean Huber <shuber@huberry.com>
 **/
-class Curl {
+class K8tCurl {
     
     /**
      * The file to read and write cookies to for requests
