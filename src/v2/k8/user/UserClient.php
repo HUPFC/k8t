@@ -69,6 +69,20 @@ class UserClient extends CurlAbstract
         return $this->get($url,$data);
     }
 
+
+    //通过手机号获取用户信息 ,或用于 检查手机号是否已注册
+    public function getUserInfoByMobile($mobile){
+        $url = $this->uri.strtolower(__FUNCTION__);
+        $data = [
+            'account'=>$mobile,
+            'password'=>null,
+            'type'=>5,
+            'ignorepw'=>true
+        ];
+        $data = array_merge($this->params,$data);
+        return $this->get($url,$data);
+    }
+
     /**
      * 帐号注册接口
      * @param $username
@@ -80,6 +94,22 @@ class UserClient extends CurlAbstract
         $url = $this->uri.strtolower(__FUNCTION__);
         $data = [
             'username'=>$username,'password'=>$password,'email'=>$email
+        ];
+        $data = array_merge($this->params,$data);
+        return $this->get($url,$data);
+    }
+
+    /**
+     * 手机帐号注册接口
+     * @param $username
+     * @param $password
+     * @param null $email
+     * @return bool|mixed|string
+     */
+    public function mobileReg($mobile,$password){
+        $url = $this->uri.strtolower(__FUNCTION__);
+        $data = [
+            'mobile'=>$mobile,'password'=>$password
         ];
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
@@ -105,27 +135,56 @@ class UserClient extends CurlAbstract
         return $this->get($url,$data);
     }
 
-    //通过手机号获取用户信息 ,或用于 检查手机号是否已注册
-    public function getUserInfoByMobile($mobile){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data = [
-            'account'=>$mobile,
-            'password'=>null,
-            'type'=>5,
-            'ignorepw'=>true
-        ];
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
 
-    //type 0:uid 1:用户名 2:邮箱 3:手机 4:qq
-    public function login($account,$password,$type,$ignorepw=0){
+    //type 0:uid 1:用户名 2:邮箱 3:qq 4:wx 5:手机
+    public function login($account,$password,$type,$ignorepw=0,$nick='',$head=''){
         $url = $this->uri.strtolower(__FUNCTION__);
         $data = [
             'account'=>$account,
             'password'=>$password,
             'type'=>$type,
-            'ignorepw'=>$ignorepw
+            'ignorepw'=>$ignorepw,
+            'nick'=>$nick,
+            'head'=>$head,
+        ];
+        $data = array_merge($this->params,$data);
+        return $this->get($url,$data);
+    }
+
+    /**
+     * @param $uid
+     * @param $openid string 第三方登录唯一id
+     * @param $action int 1:绑定 2:解绑
+     * @param $type 3:qq 4:wx
+     * @param string $nick
+     * @param string $head
+     * @return bool|mixed|string
+     */
+    public function bind($uid,$openid,$action,$type,$nick='',$head=''){
+        $url = $this->uri.strtolower(__FUNCTION__);
+        $data = [
+            'uid'=>$uid,
+            'openid'=>$openid,
+            'action'=>$action,
+            'type'=>$type,
+            'nick'=>$nick,
+            'head'=>$head,
+        ];
+        $data = array_merge($this->params,$data);
+        return $this->get($url,$data);
+    }
+
+    /**
+     * 修改手机号
+     * @param $uid
+     * @param $new_mobile
+     * @return bool|mixed|string
+     */
+    public function mobileChange($uid,$new_mobile){
+        $url = $this->uri.strtolower(__FUNCTION__);
+        $data = [
+            'uid'=>$uid,
+            'new_mobile'=>$new_mobile,
         ];
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
@@ -173,24 +232,13 @@ class UserClient extends CurlAbstract
         return $this->get($url,$data);
     }
 
-    public function updateUserDetail($uid,$nick=false,$head=false){
+    public function updateUserDetail($uid,$nick=false,$head=false,$img_id=false){
         $url = $this->uri.strtolower(__FUNCTION__);
         $data = [
             'uid'=>$uid,
             'nick'=>$nick,
             'head'=>$head,
-        ];
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-    
-    public function editInfo($uid,$img_id,$head,$nick){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data = [
-            'uid'=>$uid,
             'img_id'=>$img_id,
-            'nick'=>$nick,
-            'head'=>$head,
         ];
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);

@@ -52,5 +52,20 @@ class MailClient extends CurlAbstract
         return $this->post($url,$post);
     }
 
+    /**
+     * @param array $options
+     *                  subject
+     *                  message
+     * @return bool|mixed|string
+     */
+    public function serverSend(Array $options){
+        $url = $this->uri.strtolower(__FUNCTION__);
+        $this->params = array_merge($this->params,$options);
+        $post['message'] = $this->params['message'];
+        unset($this->params['message']);
+        $url = $url.'?'.http_build_query($this->params);
+        return $this->post($url,$post);
+    }
+
     
 }

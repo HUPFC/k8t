@@ -41,8 +41,8 @@ class MobileClient extends CurlAbstract
      * 发送手机验证码
      * @param $mac
      * @param $mobile
-     * @param $signame SIGNAME的key
-     * @param $templatecode TEMPLATE_CODE的key
+     * @param $signame string SIGNAME的key
+     * @param $templatecode string TEMPLATE_CODE的key
      * @return bool|mixed|string
      *     CONST SIGNAME =[
             'test'=>'阿里云短信测试专用',
