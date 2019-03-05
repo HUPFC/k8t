@@ -34,50 +34,17 @@ class UserClient extends CurlAbstract
     public $uri;
 
     /**
-     * uc.op.kuai8.com  /usercheck/checkusernameexists 接口
-     * @param $username
+     * 通过col=》val 获取用户信息
+     * @param $col string
+     *          uid|username|email|mobile|qq|wx
+     * @param $val string
+     *          col字段对应的值
      * @return bool|mixed|string
      */
-    public function checkUserNameExists($username){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data['username'] = $username;
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-    /**
-     * uc.op.kuai8.com  /usercheck/checkemailexists 接口
-     * @param $username
-     * @return bool|mixed|string
-     */
-    public function checkEmailExists($email){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data['email'] = $email;
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-    /**
-     * 检查手机号是否已被注册
-     * @param $mobile
-     * @return bool|mixed|string
-     */
-    public function checkMobileExists($mobile){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data['mobile'] = $mobile;
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-
-    //通过手机号获取用户信息 ,或用于 检查手机号是否已注册
-    public function getUserInfoByMobile($mobile){
+    public function info($col,$val){
         $url = $this->uri.strtolower(__FUNCTION__);
         $data = [
-            'account'=>$mobile,
-            'password'=>null,
-            'type'=>5,
-            'ignorepw'=>true
+            'col'=>$col,'val'=>$val
         ];
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
@@ -110,26 +77,6 @@ class UserClient extends CurlAbstract
         $url = $this->uri.strtolower(__FUNCTION__);
         $data = [
             'mobile'=>$mobile,'password'=>$password
-        ];
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-    /**
-     * 修改密码接口
-     * @param $uid
-     * @param $oldpassword
-     * @param $password
-     * @param bool $ignoreoldpw
-     * @return bool|mixed|string
-     */
-    public function editPwd($uid,$oldpassword,$password,$ignoreoldpw=false){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data = [
-            'uid'=>$uid,
-            'oldpassword'=>$oldpassword,
-            'password'=>$password,
-            'ignoreoldpw'=>$ignoreoldpw,
         ];
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
@@ -174,71 +121,38 @@ class UserClient extends CurlAbstract
         return $this->get($url,$data);
     }
 
+
     /**
-     * 修改手机号
-     * @param $uid
-     * @param $new_mobile
+     * @param $uid int
+     * @param $condition array
+     *          支持以下的一种操作
+     *          修改头像
+     *              img_id
+     *              head
+     *          修改昵称
+     *              nick
+     *          修改手机号
+     *              mobile
+     *          修改邮箱
+     *              email
+     *          修改密码
+     *              oldpassword
+     *              password
+     *              ignoreoldpw
      * @return bool|mixed|string
      */
-    public function mobileChange($uid,$new_mobile){
+    public function updateUserDetail($uid,$condition = []){
         $url = $this->uri.strtolower(__FUNCTION__);
         $data = [
             'uid'=>$uid,
-            'new_mobile'=>$new_mobile,
-        ];
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-    //type 0:uid 1:用户名 2:邮箱 3:手机 4:qq
-    public function getInfo($uid){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data = [
-            'uid'=>$uid
-        ];
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-    public function editEmail($uid,$email){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data = [
-            'uid'=>$uid,
-            'email'=>$email,
-        ];
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-    public function editEmailV2($uid,$old_email,$new_email,$client_type = ''){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data = [
-            'uid'=>$uid,
-            'old_email'=>$old_email,
-            'new_email'=>$new_email,
-            'client_type'=>$client_type
-        ];
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-    public function verifyEmail($uid,$email){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data = [
-            'uid'=>$uid,
-            'email'=>$email,
-        ];
-        $data = array_merge($this->params,$data);
-        return $this->get($url,$data);
-    }
-
-    public function updateUserDetail($uid,$nick=false,$head=false,$img_id=false){
-        $url = $this->uri.strtolower(__FUNCTION__);
-        $data = [
-            'uid'=>$uid,
-            'nick'=>$nick,
-            'head'=>$head,
-            'img_id'=>$img_id,
+            'nick'=>$condition['nick'],
+            'head'=>$condition['head'],
+            'img_id'=>$condition['img_id'],
+            'mobile'=>$condition['mobile'],
+            'email'=>$condition['email'],
+            'oldpassword'=>$condition['oldpassword'],
+            'password'=>$condition['password'],
+            'ignoreoldpw'=>$condition['ignoreoldpw']
         ];
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
