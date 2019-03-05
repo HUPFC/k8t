@@ -86,7 +86,7 @@ class K8tCurl {
      *
      * @param string $url
      * @param array|string $vars 
-     * @return CurlResponse object
+     * @return K8tCurlResponse object
     **/
     function delete($url, $vars = array()) {
         return $this->request('DELETE', $url, $vars);
@@ -104,11 +104,11 @@ class K8tCurl {
     /**
      * Makes an HTTP GET request to the specified $url with an optional array or string of $vars
      *
-     * Returns a CurlResponse object if the request was successful, false otherwise
+     * Returns a K8tCurlResponse object if the request was successful, false otherwise
      *
      * @param string $url
      * @param array|string $vars 
-     * @return CurlResponse
+     * @return K8tCurlResponse
     **/
     function get($url, $vars = array()) {
         if (!empty($vars)) {
@@ -121,11 +121,11 @@ class K8tCurl {
     /**
      * Makes an HTTP HEAD request to the specified $url with an optional array or string of $vars
      *
-     * Returns a CurlResponse object if the request was successful, false otherwise
+     * Returns a K8tCurlResponse object if the request was successful, false otherwise
      *
      * @param string $url
      * @param array|string $vars
-     * @return CurlResponse
+     * @return K8tCurlResponse
     **/
     function head($url, $vars = array()) {
         return $this->request('HEAD', $url, $vars);
@@ -136,7 +136,7 @@ class K8tCurl {
      *
      * @param string $url
      * @param array|string $vars 
-     * @return CurlResponse|boolean
+     * @return K8tCurlResponse|boolean
     **/
     function post($url, $vars = array()) {
         return $this->request('POST', $url, $vars);
@@ -145,11 +145,11 @@ class K8tCurl {
     /**
      * Makes an HTTP PUT request to the specified $url with an optional array or string of $vars
      *
-     * Returns a CurlResponse object if the request was successful, false otherwise
+     * Returns a K8tCurlResponse object if the request was successful, false otherwise
      *
      * @param string $url
      * @param array|string $vars 
-     * @return CurlResponse|boolean
+     * @return K8tCurlResponse|boolean
     **/
     function put($url, $vars = array()) {
         return $this->request('PUT', $url, $vars);
@@ -158,12 +158,12 @@ class K8tCurl {
     /**
      * Makes an HTTP request of the specified $method to a $url with an optional array or string of $vars
      *
-     * Returns a CurlResponse object if the request was successful, false otherwise
+     * Returns a K8tCurlResponse object if the request was successful, false otherwise
      *
      * @param string $method
      * @param string $url
      * @param array|string $vars
-     * @return CurlResponse|boolean
+     * @return K8tCurlResponse|boolean
     **/
     function request($method, $url, $vars = array()) {
         $this->error = '';
@@ -175,7 +175,7 @@ class K8tCurl {
         $this->set_request_headers();
         $response = curl_exec($this->request);
         if ($response) {
-            $response = new CurlResponse($response);
+            $response = new K8tCurlResponse($response);
         } else {
             $this->error = curl_errno($this->request).' - '.curl_error($this->request);
         }
