@@ -142,6 +142,18 @@ class UserClient extends CurlAbstract
      * @return bool|mixed|string
      */
     public function updateUserDetail($uid,$condition = []){
+        $predefine_list = [
+            'uid','nick','head','img_id','mobile','email','oldpassword','password','ignoreoldpw'
+        ];
+        $tmp = $condition;
+        foreach ($condition as $key=>$val){
+            if(!in_array($key,$predefine_list)){
+                throw new \Exception('the paramter:'.$key.' unfound in predefine variable');
+            }
+        }
+        if(isset($condition['head']) && !isset($condition['img_id'])){
+            throw new \Exception('the col head,img_id must coexist');
+        }
         $url = $this->uri.strtolower(__FUNCTION__);
         $data = [
             'uid'=>$uid,
