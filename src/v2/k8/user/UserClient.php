@@ -143,7 +143,7 @@ class UserClient extends CurlAbstract
      */
     public function updateUserDetail($uid,$condition = []){
         $predefine_list = [
-            'uid','nick','head','img_id','mobile','email','oldpassword','password','ignoreoldpw'
+            'uid','nick','head','img_id','mobile','email','oldpassword','password','ignoreoldpw','is_gm'
         ];
         $tmp = $condition;
         foreach ($condition as $key=>$val){
@@ -164,7 +164,8 @@ class UserClient extends CurlAbstract
             'email'=>$condition['email'],
             'oldpassword'=>$condition['oldpassword'],
             'password'=>$condition['password'],
-            'ignoreoldpw'=>$condition['ignoreoldpw']
+            'ignoreoldpw'=>$condition['ignoreoldpw'],
+            'is_gm'=>$condition['is_gm'],
         ];
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
