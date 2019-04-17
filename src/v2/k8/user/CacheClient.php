@@ -13,7 +13,7 @@ namespace hupfc\k8t\src\v2\k8\user;
 use hupfc\k8t\src\Config;
 use hupfc\k8t\src\CurlAbstract;
 
-class Cache extends CurlAbstract
+class CacheClient extends CurlAbstract
 {
 
     protected static $self;
