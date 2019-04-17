@@ -27,7 +27,7 @@ class CacheClient extends CurlAbstract
             return self::$self;
         }
         self::$self = new self();
-        self::$self->uri = Config::$domain['k8']['user'].'/user/';
+        self::$self->uri = Config::$domain['k8']['user'].'/cache/';
         return self::$self;
     }
 
