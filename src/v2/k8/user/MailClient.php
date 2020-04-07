@@ -16,9 +16,11 @@ class MailClient extends CurlAbstract
 {
 
     protected static $self;
+
     /**
      * @return MailClient
      * 用于静态方式 单例方式调用类
+     * @throws \Exception
      */
     public static function self()
     {

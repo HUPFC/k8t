@@ -17,9 +17,11 @@ class UserClient extends CurlAbstract
 {
 
     protected static $self;
+
     /**
      * @return UserClient
      * 用于静态方式 单例方式调用类
+     * @throws \Exception
      */
     public static function self()
     {
@@ -140,6 +142,7 @@ class UserClient extends CurlAbstract
      *              password
      *              ignoreoldpw
      * @return bool|mixed|string
+     * @throws \Exception
      */
     public function updateUserDetail($uid,$condition = []){
         $predefine_list = [

@@ -39,6 +39,7 @@ class Config
         'clientip'=>'test',//客户端服务器ip
         'clienttype'=>0,//客户端业务类型 1:user.mc 2:联机平台
         'key' => '',//key 密钥
+        'uid' => 0,//用户uid
     ];
 
     public static $domain = [
