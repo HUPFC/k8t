@@ -29,7 +29,7 @@ class H5Client extends CurlAbstract
             return self::$self;
         }
         self::$self = new self();
-        self::$self->uri = Config::$domain['k8']['user'].'/user/';
+        self::$self->uri = Config::$domain['k8']['user'].'/h5/';
         return self::$self;
     }
 
