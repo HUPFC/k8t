@@ -38,10 +38,15 @@ class H5Client extends CurlAbstract
 
     /**
      * 获取随机account用于h5账号注册
+     * @param string $app_id
+     * @param array $params 公共参数(见jira)
      */
-    public function getAccount(){
+    public function getAccount($app_id,$params=[]){
         $url = $this->uri.strtolower(__FUNCTION__);
-        $data=[];
+        $data=[
+            'app_id'=>$app_id,
+        ];
+        $data = array_merge($data,$params);
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
     }
