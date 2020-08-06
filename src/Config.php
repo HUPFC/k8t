@@ -22,6 +22,9 @@ class Config
     const K8XYX=4;
     const K8M_ADMIN=5;
 
+    //kLP从100开始
+    const KLPPC = 100;
+
     public static $log_options=[
         'env'=>'prod',
         'map'=>[
@@ -46,7 +49,11 @@ class Config
         'k8'=>[
             'user'=>'domain',
             'upload'=>'domain',
-        ]
+        ],
+        'klp'=>[
+            'user'=>'domain',
+            'upload'=>'domain',
+        ],
     ];
 
     public static function setParams($params){
