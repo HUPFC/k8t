@@ -71,4 +71,20 @@ class H5Client extends CurlAbstract
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
     }
+
+    /*
+     * 通过appid 和h5_uid 获取uid
+     * @param string $h5_uid
+     * @param string $app_id
+     * @return array
+     */
+    public function getInfoByAppIDH5Uid($h5_uid,$app_id){
+        $url = $this->uri.strtolower(__FUNCTION__);
+        $data = [
+            'h5_uid'=>$h5_uid,
+            'app_id'=>$app_id,
+        ];
+        $data = array_merge($this->params,$data);
+        return $this->get($url,$data);
+    }
 }
