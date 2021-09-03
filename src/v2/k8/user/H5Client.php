@@ -87,4 +87,32 @@ class H5Client extends CurlAbstract
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
     }
+
+    /**
+     * @param $h5_uid int
+     * @param $condition array
+     * @return bool|mixed|string
+     * @throws \Exception
+     */
+    public function update($h5_uid,$condition = []){
+        $predefine_list = [
+            'h5_uid','app_id','uid','status','real_info','adult_time'
+        ];
+        foreach ($condition as $key=>$val){
+            if(!in_array($key,$predefine_list)){
+                throw new \Exception('the paramter:'.$key.' unfound in predefine variable');
+            }
+        }
+        $url = $this->uri.strtolower(__FUNCTION__);
+        $data = [
+            'h5_uid'=>$h5_uid,
+            'app_id'=>$condition['app_id'],
+            'uid'=>$condition['uid'],
+            'status'=>$condition['status'],
+            'real_info'=>$condition['real_info'],
+            'adult_time'=>$condition['adult_time'],
+        ];
+        $data = array_merge($this->params,$data);
+        return $this->get($url,$data);
+    }
 }
