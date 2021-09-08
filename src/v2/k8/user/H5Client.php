@@ -115,4 +115,16 @@ class H5Client extends CurlAbstract
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
     }
+
+    /*
+     * 通过clo=>val 获取用户信息
+     */
+    public function info($col,$val){
+        $url = $this->uri.strtolower(__FUNCTION__);
+        $data = [
+            'col'=>$col,'val'=>$val
+        ];
+        $data = array_merge($this->params,$data);
+        return $this->get($url,$data);
+    }
 }
