@@ -111,6 +111,7 @@ class H5Client extends CurlAbstract
             'status'=>$condition['status'],
             'real_info'=>$condition['real_info'],
             'adult_time'=>$condition['adult_time'],
+            'real_daytime'=>$condition['real_daytime'],
         ];
         $data = array_merge($this->params,$data);
         return $this->get($url,$data);
