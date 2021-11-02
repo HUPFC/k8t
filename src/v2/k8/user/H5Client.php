@@ -96,7 +96,7 @@ class H5Client extends CurlAbstract
      */
     public function update($h5_uid,$condition = []){
         $predefine_list = [
-            'h5_uid','app_id','uid','status','real_info','adult_time'
+            'h5_uid','app_id','uid','status','real_info','adult_time','real_daytime'
         ];
         foreach ($condition as $key=>$val){
             if(!in_array($key,$predefine_list)){
